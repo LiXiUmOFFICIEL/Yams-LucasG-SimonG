@@ -131,27 +131,27 @@ int numeroLance;
 {
     int nbrDesRelance;
     printf("Voici le résultat de votre 1er lancé\n\n");
-    lanceDe(des1);
-    lanceDe(des2);
-    lanceDe(des3);
-    lanceDe(des4);
-    lanceDe(des5);
+    des1.val = lanceDe(des1);
+    des2.val = lanceDe(des2);
+    des3.val = lanceDe(des3);
+    des4.val = lanceDe(des4);
+    des5.val = lanceDe(des5);
 }
 
 int result;
-printf("\nJoueur 1, voulez-vous garder le dé 1 ?\n 1: Oui\n 0: Non\n");
+printf("\nJoueur 1, voulez-vous garder le dé 1 qui vaut: %d ?\n 1: Oui\n 0: Non\n", des1.val);
     scanf("%d", &result);
     des1.gard = result;
 
-    printf("\nJoueur 1, voulez-vous garder le dé 2 ?\n 1: Oui\n 0: Non\n");
+    printf("\nJoueur 1, voulez-vous garder le dé 2 qui vaut: %d ?\n 1: Oui\n 0: Non\n", des2.val);
     scanf("%d", &result);
     des2.gard = result;
 
-    printf("\nJoueur 1, voulez-vous garder le dé 3 ?\n 1: Oui\n 0: Non\n");
+    printf("\nJoueur 1, voulez-vous garder le dé 3 qui vaut: %d ?\n 1: Oui\n 0: Non\n", des3.val);
     scanf("%d", &result);
     des3.gard = result;
 
-    printf("\nJoueur 1, voulez-vous garder le dé 4 ?\n 1: Oui\n 0: Non\n");
+    printf("\nJoueur 1, voulez-vous garder le dé 4 qui vaut: %d ?\n 1: Oui\n 0: Non\n", des4.val);
     scanf("%d", &result);
     des4.gard = result;
 
@@ -160,9 +160,7 @@ printf("\nJoueur 1, voulez-vous garder le dé 1 ?\n 1: Oui\n 0: Non\n");
     scanf("%d", &result);
     des5.gard = result;
 
-    if (des1.gard == 1 && des2.gard == 1 && des3.gard == 1 && des4.gard == 1 && des5.gard == 1){
-        /* lancer fonction */
-    }
+
 
 
 
@@ -287,7 +285,7 @@ des5.gard = 0;
 
 /* DEBUT PARTIE */
 
-    for (int numeroTour = 1; numeroTour <= 1; numeroTour++){
+    for (int numeroTour = 1; numeroTour <= 1/*12*/; numeroTour++){
         tourJ1(numeroTour);
     }
 
