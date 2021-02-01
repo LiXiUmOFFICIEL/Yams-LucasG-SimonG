@@ -109,37 +109,10 @@ char choisirNom(nbrJoueur, choixMode)
     return 0;
 }
 
-
-int lanceDe(Des leDe){
-
-    const int MAX = 6, MIN = 1;
-    if (leDe.gard != 1) {
-        int num = (rand() % (MAX - MIN + 1)) + MIN;
-        leDe.val = num;
-        printf("DE%d = %d\n", leDe.id, leDe.val);
-    }
-
-    return leDe.val;
-
-}
-
-int tourJ1(numeroTour){
-
-printf("JOUEUR 1 - TOUR %d\n", numeroTour);
-
-int numeroLance;
-{
-    int nbrDesRelance;
-    printf("Voici le résultat de votre 1er lancé\n\n");
-    des1.val = lanceDe(des1);
-    des2.val = lanceDe(des2);
-    des3.val = lanceDe(des3);
-    des4.val = lanceDe(des4);
-    des5.val = lanceDe(des5);
-}
-
-int result;
-printf("\nJoueur 1, voulez-vous garder le dé 1 qui vaut: %d ?\n 1: Oui\n 0: Non\n", des1.val);
+int veutRelancer(/*Des leDes1, Des leDes2, Des leDes3, Des leDes4, Des leDes5*/){
+    int result;
+    int veutRejouer;
+    printf("\nJoueur 1, voulez-vous garder le dé 1 qui vaut: %d ?\n 1: Oui\n 0: Non\n", des1.val);
     scanf("%d", &result);
     des1.gard = result;
 
@@ -155,21 +128,146 @@ printf("\nJoueur 1, voulez-vous garder le dé 1 qui vaut: %d ?\n 1: Oui\n 0: Non
     scanf("%d", &result);
     des4.gard = result;
 
-
-    printf("\nJoueur 1, voulez-vous garder le dé 5 ?\n 1: Oui\n 0: Non\n");
+    printf("\nJoueur 1, voulez-vous garder le dé 5 qui vaut: %d?\n 1: Oui\n 0: Non\n", des5.val);
     scanf("%d", &result);
     des5.gard = result;
 
+    if (des1.gard == 1 && des2.gard == 1 && des3.gard == 1 && des4.gard == 1 && des5.gard == 1) {
+        veutRejouer = 0;
+    }
+    else {
+        veutRejouer = 1;
+    }
+    return veutRejouer;
+}
 
+void afficheDes(Des leDes1, Des leDes2, Des leDes3, Des leDes4, Des leDes5){
+    printf("DE%d = %d\n", leDes1.id, leDes1.val);
+    printf("DE%d = %d\n", leDes2.id, leDes2.val);
+    printf("DE%d = %d\n", leDes3.id, leDes3.val);
+    printf("DE%d = %d\n", leDes4.id, leDes4.val);
+    printf("DE%d = %d\n", leDes5.id, leDes5.val);
+}
 
+void marquePoint(){
+    printf("\n\nChoisissez où vous souhaitez marquer votre score :"
+           "\n 1: AS"
+           "\n 2: DEUX"
+           "\n 3: TROIS"
+           "\n 4: QUATRE"
+           "\n 5: CINQ"
+           "\n 6: SIX"
+           "\n 7: BRELAN"
+           "\n 8: PETITE SUITE"
+           "\n 9: GRANDE SUITE"
+           "\n 10: FULL"
+           "\n 11: CARRÉ"
+           "\n 12: YAM\n\n");
+}
 
+int lanceDe(Des leDe){
 
+    const int MAX = 6, MIN = 1;
+    if (leDe.gard != 1) {
+        int num = (rand() % (MAX - MIN + 1)) + MIN;
+        leDe.val = num;
+    }
 
+    return leDe.val;
 
+}
 
+int tourJ1(numeroTour){
 
+printf("JOUEUR 1 - TOUR %d\n", numeroTour);
 
+int numeroLance;
 
+    int nbrDesRelance;
+    printf("Voici le résultat de votre 1er lancé\n\n");
+    des1.val = lanceDe(des1);
+    des2.val = lanceDe(des2);
+    des3.val = lanceDe(des3);
+    des4.val = lanceDe(des4);
+    des5.val = lanceDe(des5);
+    afficheDes(des1, des2, des3, des4, des5);
+    int resultVeutRelancer = veutRelancer();
+
+    if (resultVeutRelancer == 0) {
+    marquePoint();
+    }
+    else
+        {
+        printf("\nRELANCE DES DÉS QUE VOUS AVEZ GARDÉ EN COURS...\n");
+        printf("Voici le résultat de votre 2ème lancé\n\n");
+        if (des1.gard == 0){
+            des1.val = lanceDe(des1);
+        }
+        if (des2.gard == 0){
+            des2.val = lanceDe(des2);
+        }
+        if (des3.gard == 0){
+            des3.val = lanceDe(des3);
+        }
+        if (des4.gard == 0){
+            des4.val = lanceDe(des4);
+        }
+        if (des5.gard == 0){
+            des5.val = lanceDe(des5);
+        }
+        afficheDes(des1, des2, des3, des4, des5);
+    }
+
+    resultVeutRelancer = veutRelancer();
+    if (resultVeutRelancer == 0) {
+        marquePoint();
+    }
+    else {
+        printf("\nRELANCE DES DÉS QUE VOUS AVEZ GARDÉ EN COURS...\n");
+        printf("Voici le résultat de votre 3ème lancé\n\n");
+        if (des1.gard == 0) {
+            des1.val = lanceDe(des1);
+        }
+        if (des2.gard == 0) {
+            des2.val = lanceDe(des2);
+        }
+        if (des3.gard == 0) {
+            des3.val = lanceDe(des3);
+        }
+        if (des4.gard == 0) {
+            des4.val = lanceDe(des4);
+        }
+        if (des5.gard == 0) {
+            des5.val = lanceDe(des5);
+        }
+        afficheDes(des1, des2, des3, des4, des5);
+    }
+
+    resultVeutRelancer = veutRelancer();
+    if (resultVeutRelancer == 0) {
+        marquePoint();
+    }
+    else {
+        printf("\nRELANCE DES DÉS QUE VOUS AVEZ GARDÉ EN COURS...\n");
+        printf("Voici le résultat de votre 3ème lancé\n\n");
+        if (des1.gard == 0) {
+            des1.val = lanceDe(des1);
+        }
+        if (des2.gard == 0) {
+            des2.val = lanceDe(des2);
+        }
+        if (des3.gard == 0) {
+            des3.val = lanceDe(des3);
+        }
+        if (des4.gard == 0) {
+            des4.val = lanceDe(des4);
+        }
+        if (des5.gard == 0) {
+            des5.val = lanceDe(des5);
+        }
+        afficheDes(des1, des2, des3, des4, des5);
+        marquePoint();
+    }
 
 return  0;
 }
@@ -193,7 +291,7 @@ int main(void){
 /*--------------------------------
 MESSAGE DE BIENVENUE
  ---------------------------------- */
-printf("\nBienvenue dans le jeu du Yams\n\n Choisissez un mode de jeu :\n 1: 1 joueur\n 2: 2 joueurs\n");
+printf("\nBienvenue dans le jeu du Yams\n\n Choisissez un modde de jeu :\n 1: 1 joueur\n 2: 2 joueurs\n");
 int choixMode = 0;
 scanf("%d", &choixMode);
 printf("Vous avez choisi le mode %d\n", choixMode);
@@ -274,14 +372,6 @@ des2.gard = 0;
 des3.gard = 0;
 des4.gard = 0;
 des5.gard = 0;
-
-
-
-
-
-
-
-
 
 /* DEBUT PARTIE */
 
